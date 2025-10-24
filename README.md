@@ -54,9 +54,9 @@ On vérifie la structure :
 Résultat attendu :
 /srv/ftp/root_anon
 ├── MonMetFavoris.txt
-├── MyMemes
-│   ├── MonMeme.png
-│   └── audioHumoristique.mp3
+├── MyMemes/
+│   ├── MonMeme.png
+│   └── audioHumoristique.mp3
 └── UneBlague.txt
 
 
