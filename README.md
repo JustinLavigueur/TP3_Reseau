@@ -49,7 +49,7 @@ On ouvre les ports FTP et recharge le firewall :
  Dans mon cas, j'ai installé tree pour visualiser l'arborescence du dossier root_anon - `sudo apt install tree`
 
 On vérifie la structure : 
--`tree /srv/ftp/root_anon`
+- `tree /srv/ftp/root_anon`
 
 Résultat attendu :
 /srv/ftp/root_anon
