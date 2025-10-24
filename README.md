@@ -1,11 +1,15 @@
-# TP3_Reseau
-Travail pratique 3 pour le cours de Réseau
+# TP3 – Réseau
+**Cours : Réseau**  
+**Travail pratique 3 : Installation et configuration de vsftpd**
 
-Création de ftp avec anonyme 
+---
 
-sudo apt update
+## 1. Installation de vsftpd
+Mettre à jour le système et installer vsftpd : 
+`sudo apt update`
+`sudo apt install vsftpd -y`
 
-sudo apt install vsftpd -y
+
 sudo mkdir -p /srv/ftp/root_anon
 
 echo "Ha ha, blague simple !" | sudo tee /srv/ftp/root_anon/UneBlague.txt
