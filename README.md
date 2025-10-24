@@ -46,7 +46,8 @@ On ouvre les ports FTP et recharge le firewall :
 - `sudo firewall-cmd --list-all`
 
 ## 5. Vérification de la structure du dossier FTP
- Dans mon cas, j'ai installé tree pour visualiser l'arborescence du dossier root_anon - `sudo apt install tree`
+ Dans mon cas, j'ai installé tree pour visualiser l'arborescence du dossier root_anon:
+ - `sudo apt install tree`
 
 On vérifie la structure : 
 - `tree /srv/ftp/root_anon`
