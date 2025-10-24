@@ -5,30 +5,32 @@
 ---
 
 ## 1. Installation de vsftpd
-Mettre à jour le système et installer vsftpd : 
+On met à jour le système et on installe vsftpd : 
 - `sudo apt update`
 - `sudo apt install vsftpd -y`
+On crée un dossier pour l’FTP anonyme :  
+- `sudo mkdir -p /srv/ftp/root_anon`
 
+## 2. Ajout de fichiers dans le FTP anonyme
+On crée des fichiers pour tester : 
+- `echo "Ha ha, blague simple !" | sudo tee /srv/ftp/root_anon/UneBlague.txt`
+- `echo "J’aime les pâtes." | sudo tee /srv/ftp/root_anon/MonMetFavoris.txt`
+On crée par la suite un sous-dossier pour d’autres fichiers selon les dires du prof :  
+- `sudo mkdir -p /srv/ftp/root_anon/MyMemes`
+- `sudo touch /srv/ftp/root_anon/MyMemes/MonMeme.png`
+- `sudo touch /srv/ftp/root_anon/MyMemes/audioHumoristique.mp3`
+On applique les permissions de l'anonyme (lecture seulement) :  
+- `sudo chmod 555 /srv/ftp/root_anon`
 
-sudo mkdir -p /srv/ftp/root_anon
+## 3. Configuration de vsftpd
+On édite le fichier de configuration pour qu'un utilisateur anonyme utilise FTP :
+- `sudo nano /etc/vsftpd.conf`
+On redémarre et active le service vsftpd :  
+- `sudo systemctl restart vsftpd`
+- `sudo systemctl enable vsftpd`
 
-echo "Ha ha, blague simple !" | sudo tee /srv/ftp/root_anon/UneBlague.txt
-echo "J’aime les pâtes." | sudo tee /srv/ftp/root_anon/MonMetFavoris.txt
-Ha ha, blague simple !
-J’aime les pâtes.
-
-sudo mkdir -p /srv/ftp/root_anon/MyMemes
-sudo touch /srv/ftp/root_anon/MyMemes/MonMeme.png
-sudo touch /srv/ftp/root_anon/MyMemes/audioHumoristique.mp3
-
-sudo chmod 555 /srv/ftp/root_anon
-
-sudo nano /etc/vsftpd.conf
-
-sudo systemctl restart vsftpd
-
-sudo systemctl enable vsftpd
-
+## 4. Configuration du firewall
+Installer firewalld et le démarrer :  
 sudo apt-get install firewalld
  sudo systemctl enable firewalld
  sudo systemctl start firewalld
