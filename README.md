@@ -6,8 +6,8 @@
 
 ## 1. Installation de vsftpd
 Mettre à jour le système et installer vsftpd : 
-`sudo apt update`
-`sudo apt install vsftpd -y`
+- `sudo apt update`
+- `sudo apt install vsftpd -y`
 
 
 sudo mkdir -p /srv/ftp/root_anon
