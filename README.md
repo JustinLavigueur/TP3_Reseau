@@ -8,6 +8,7 @@
 On met à jour le système et on installe vsftpd : 
 - `sudo apt update`
 - `sudo apt install vsftpd -y`
+
 On crée un dossier pour l’FTP anonyme :  
 - `sudo mkdir -p /srv/ftp/root_anon`
 
@@ -15,6 +16,7 @@ On crée un dossier pour l’FTP anonyme :
 On crée des fichiers pour tester : 
 - `echo "Ha ha, blague simple !" | sudo tee /srv/ftp/root_anon/UneBlague.txt`
 - `echo "J’aime les pâtes." | sudo tee /srv/ftp/root_anon/MonMetFavoris.txt`
+
 On crée par la suite un sous-dossier pour d’autres fichiers selon les dires du prof :  
 - `sudo mkdir -p /srv/ftp/root_anon/MyMemes`
 - `sudo touch /srv/ftp/root_anon/MyMemes/MonMeme.png`
