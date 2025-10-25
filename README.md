@@ -29,6 +29,37 @@ On applique les permissions de l'anonyme (lecture seulement) :
 On édite le fichier de configuration pour qu'un utilisateur anonyme utilise FTP :
 - `sudo nano /etc/vsftpd.conf`
 
+On met ce contenu suivant dans le fichier de configuration ftp (On va devoir le changer pour les utilisateurs locaux plus tard)
+
+### 🧩 Configuration FTP Anonyme
+**Auteur : Justin**
+
+Ce fichier décrit la configuration du serveur **vsftpd** pour permettre un accès **anonyme en lecture seule**.
+
+#### ⚙️ Tableau de configuration
+
+| Directive | Description |
+|------------|--------------|
+| `listen=YES` | Active le service FTP sur IPv4. |
+| `anonymous_enable=YES` | Autorise la connexion anonyme (sans nom d’utilisateur ni mot de passe). |
+| `local_enable=NO` | Désactive l’accès FTP des utilisateurs locaux du système (ex. ubuntu, writer, reader). |
+| `write_enable=NO` | Interdit toute action d’écriture, de suppression ou de renommage. |
+| `anon_root=/srv/ftp/root_anon` | Définit le dossier racine pour l’utilisateur anonyme. |
+| `anon_upload_enable=NO` | Empêche l’anonyme de téléverser (uploader) des fichiers. |
+| `anon_mkdir_write_enable=NO` | Empêche la création de nouveaux dossiers. |
+| `anon_other_write_enable=NO` | Bloque toute autre action nécessitant l’écriture. |
+| `dirmessage_enable=YES` | Active les messages automatiques dans les répertoires. |
+| `use_localtime=YES` | Utilise l’heure locale du serveur pour les journaux et transferts. |
+| `xferlog_enable=YES` | Active la journalisation (logs) des connexions et transferts FTP. |
+| `ftpd_banner=Bienvenue sur le serveur FTP anonyme de Justin !` | Message affiché lors de la connexion FTP. |
+| `listen_ipv6=NO` | Désactive l’écoute sur IPv6 (utilise seulement IPv4). |
+
+✅ **Résumé :**  
+Cette configuration permet à quiconque de se connecter en FTP en mode anonyme (`ftp -A <adresse_IP>`),  
+de **lire uniquement** les fichiers présents dans `/srv/ftp/root_anon`,  
+sans pouvoir les modifier, supprimer ni en créer de nouveaux.
+
+
 On redémarre et active le service vsftpd :  
 - `sudo systemctl restart vsftpd`
 - `sudo systemctl enable vsftpd`
