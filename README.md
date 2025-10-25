@@ -56,7 +56,7 @@ Ce fichier décrit la configuration du serveur **vsftpd** pour permettre un acc�
 | `ftpd_banner=Bienvenue sur le serveur FTP anonyme de Justin !` | Message affiché lors de la connexion FTP. |
 | `listen_ipv6=NO` | Désactive l’écoute sur IPv6 (utilise seulement IPv4). |
 
-✅ **Résumé :**  
+**Résumé :**  
 Cette configuration permet à quiconque de se connecter en FTP en mode anonyme (`ftp -A <adresse_IP>`),  
 de **lire uniquement** les fichiers présents dans `/srv/ftp/root_anon`,  
 sans pouvoir les modifier, supprimer ni en créer de nouveaux.
@@ -100,42 +100,42 @@ Résultat attendu :
 
 ## Création des utilisateurs locaux dans la VM
 On crée respectivement les utilisateurs locaux qu'on a de besoin pour le TP3 :
-- `sudo adduser ftpadmin` 
-- `sudo adduser writer`
-- `sudo adduser reader`
+- `sudo adduser ftpadmin # mot de passe : ftpadmin` 
+- `sudo adduser writer # mot de passe : writer`
+- `sudo adduser reader # mot de passe : reader`
 
-Après cette étape, ftp va nous demander le mot de passe de chacun (Dans mon cas pour pas me compliquer la vie, j'ai écrit le mot de passe le même que pour le nom utilisateur (writer : writer)
+Après cette étape, ftp va nous demander le mot de passe de chacun
 
 ## Création de leurs dossiers
 On va faire correspondre les chemins indiqués selon l'énoncé :
 - `sudo mkdir -p /home/ubuntu/writer`
 - `sudo mkdir -p /home/ubuntu/reader`
 
-On ne fait rien pour le dossier de ftpadmin, puisquìl existe de base /home/ubuntu dans ftp
+## Sous dossiers **files** (contenu présent dans les dossiers utilisateurs) 
+- `sudo mkdir -p /home/ubuntu/writer/files`
+- `sudo mkdir -p /home/ubuntu/reader/files`
+
+On ne fait rien pour le dossier de ftpadmin, puisqu'il existe de base /home/ubuntu dans ftp
+
+## Attribution des propriétaires
+Le dossier parent appartient à root (sécurise le chroot) :
+- `sudo chown root:root /home/ubuntu`
+- `sudo chown root:root /home/ubuntu/writer`
+- `sudo chown root:root /home/ubuntu/reader`
+
+## Le sous-dossier “files” appartient à l'utilisateur
+- `sudo chown writer:writer /home/ubuntu/writer/files`
+- `sudo chown reader:reader /home/ubuntu/reader/files`
+
+## Changement des répertoires home des utilisateurs
+- `sudo usermod -d /home/ubuntu/reader reader`
+- `sudo usermod -d /home/ubuntu/writer writer`
+- `sudo usermod -d /home/ubuntu ftpadmin`
 
 ## Permission 
-sudo chown admin:admin /home/ubuntu
-sudo chown writer:writer /home/ubuntu/writer
-sudo chown reader:reader /home/ubuntu/reader
-
-## les homes 
-sudo usermod -d /home/ubuntu/reader reader
-sudo usermod -d /home/ubuntu/writer writer
-sudo usermod -d /home/ubuntu ftpadmin
-
-## files 
-sudo mkdir -p /home/ubuntu/reader/files
-sudo mkdir -p /home/ubuntu/writer/files
-
-# Le parent appartient à root
-sudo chown root:root /home/ubuntu/reader
-sudo chown root:root /home/ubuntu/writer
-sudo chown root:root /home/ubuntu
-
-# Le sous-dossier “files” appartient à l’utilisateur
-sudo chown reader:reader /home/ubuntu/reader/files
-sudo chown writer:writer /home/ubuntu/writer/files
-sudo chown ftpadmin:ftpadmin /home/ubuntu/files
+- `sudo chown ftpadmin:ftpadmin /home/ubuntu`
+- `sudo chown writer:writer /home/ubuntu/writer`
+- `sudo chown reader:reader /home/ubuntu/reader`
 
 # Permissions sécurisées
 sudo chmod 755 /home/ubuntu/reader
