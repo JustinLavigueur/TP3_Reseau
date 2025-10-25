@@ -4,6 +4,8 @@
 
 ---
 
+# === FTP anonyme ===
+
 ## 1. Installation de vsftpd
 On met à jour le système et on installe vsftpd : 
 - `sudo apt update`
@@ -93,3 +95,53 @@ Résultat attendu :
 
 
 ---
+
+# === Utilisateurs locaux ===
+
+## Création des utilisateurs locaux dans la VM
+On crée respectivement les utilisateurs locaux qu'on a de besoin pour le TP3 :
+- `sudo adduser ftpadmin` 
+- `sudo adduser writer`
+- `sudo adduser reader`
+
+Après cette étape, ftp va nous demander le mot de passe de chacun (Dans mon cas pour pas me compliquer la vie, j'ai écrit le mot de passe le même que pour le nom utilisateur (writer : writer)
+
+## Création de leurs dossiers
+On va faire correspondre les chemins indiqués selon l'énoncé :
+- `sudo mkdir -p /home/ubuntu/writer`
+- `sudo mkdir -p /home/ubuntu/reader`
+
+On ne fait rien pour le dossier de ftpadmin, puisquìl existe de base /home/ubuntu dans ftp
+
+## Permission 
+sudo chown admin:admin /home/ubuntu
+sudo chown writer:writer /home/ubuntu/writer
+sudo chown reader:reader /home/ubuntu/reader
+
+## les homes 
+sudo usermod -d /home/ubuntu/reader reader
+sudo usermod -d /home/ubuntu/writer writer
+sudo usermod -d /home/ubuntu ftpadmin
+
+## Changer la configuration vsftpd.conf
+
+
+# Autorise les utilisateurs locaux à se connecter
+local_enable=YES
+
+# Permet l’écriture pour eux (upload, suppression, renommage)
+write_enable=YES
+
+# Active le chroot pour tous les utilisateurs locaux
+chroot_local_user=YES
+
+# Active le fichier d’exceptions pour le chroot
+chroot_list_enable=YES
+chroot_list_file=/etc/vsftpd.chroot_list
+
+# Active la gestion d’une liste d’utilisateurs autorisés
+userlist_enable=YES
+userlist_file=/etc/vsftpd.userlist
+userlist_deny=NO
+
+
