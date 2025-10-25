@@ -123,6 +123,28 @@ sudo usermod -d /home/ubuntu/reader reader
 sudo usermod -d /home/ubuntu/writer writer
 sudo usermod -d /home/ubuntu ftpadmin
 
+## files 
+sudo mkdir -p /home/ubuntu/reader/files
+sudo mkdir -p /home/ubuntu/writer/files
+
+# Le parent appartient à root
+sudo chown root:root /home/ubuntu/reader
+sudo chown root:root /home/ubuntu/writer
+sudo chown root:root /home/ubuntu
+
+# Le sous-dossier “files” appartient à l’utilisateur
+sudo chown reader:reader /home/ubuntu/reader/files
+sudo chown writer:writer /home/ubuntu/writer/files
+sudo chown ftpadmin:ftpadmin /home/ubuntu/files
+
+# Permissions sécurisées
+sudo chmod 755 /home/ubuntu/reader
+sudo chmod 755 /home/ubuntu/writer
+sudo chmod 755 /home/ubuntu
+sudo chmod 755 /home/ubuntu/reader/files
+sudo chmod 755 /home/ubuntu/writer/files
+sudo chmod 755 /home/ubuntu/files
+
 ## Changer la configuration vsftpd.conf
 
 
