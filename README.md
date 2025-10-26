@@ -175,64 +175,62 @@ On peut simplement ecrire **ftpadmin** dedans
 
 # === Utilisateurs virtuels ===
 
-## 1. 
-sudo apt install db-util -y
+## 1. Installation de db-util si nécessaire
+- `sudo apt update`
+- `sudo apt install db-util -y`
 
-sudo db_load -T -t hash -f /home/ubuntu/login.txt /home/ubuntu/login.db
+## 2. Création des dossiers pour les utilisateurs virtuels
+- `sudo mkdir -p /home/ubuntu/iamgroot/files`
+- `sudo mkdir -p /home/ubuntu/vwrite/files`
+- `sudo mkdir -p /home/ubuntu/vreader/files`
 
-sudo chmod 600 /home/ubuntu/login.*
-sudo chown root:root /home/ubuntu/login.db
+## 3. Création ou vérification que l’utilisateur 'ftp' existe (utilisé comme compte invité)
+- `sudo adduser --home /home/ftp --shell /bin/false ftp`
 
-# ==============================
-# Configuration vsFTPd complète
-# Auteur : Justin
-# ==============================
+## 4. On donne la propriété des dossiers à 'ftp'
+- `sudo chown -R ftp:ftp /home/ubuntu/iamgroot
+- `sudo chown -R ftp:ftp /home/ubuntu/vwrite`
+- `sudo chown -R ftp:ftp /home/ubuntu/vreader`
 
-# Message d’accueil
-ftpd_banner=Bienvenue sur le serveur FTP de Justin !
+## 5. On définit les permissions selon le rôle de chaque utilisateur (énoncé du TP3)
+- `sudo chmod -R 777 /home/ubuntu/iamgroot   # lecture/écriture/suppression complète`
+- `sudo chmod -R 775 /home/ubuntu/vwrite     # lecture + écriture`
+- `sudo chmod -R 755 /home/ubuntu/vreader    # lecture seule`
 
-# Activer le mode standalone (IPv4)
-listen=YES
-listen_ipv6=NO
+## 6. Création du fichier de login (nom/mot de passe). IL est déjà créé de base avec le nom de mes utilisateurs locaux 
+- `sudo nano /home/ubuntu/login.txt`
 
-# Interdire la connexion anonyme
-anonymous_enable=NO
+iamgroot
+iamgroot
+vwrite
+vwrite
+vreader
+vreader
 
-# Autoriser les utilisateurs locaux
-local_enable=YES
-write_enable=YES
+## 7. Génération de la base de données pour PAM à partir de login.txt
+- `sudo db_load -T -t hash -f /home/ubuntu/login.txt /home/ubuntu/login.db`
+- `sudo chmod 600 /home/ubuntu/login.*`
+- `sudo chown root:root /home/ubuntu/login.db`
 
-# Activer le chroot pour tous les utilisateurs locaux
-chroot_local_user=YES
-allow_writeable_chroot=YES
+## 8. Création le fichier PAM pour les utilisateurs virtuels
+- `echo "auth required pam_userdb.so db=/home/ubuntu/login" | sudo tee /etc/pam.d/vsftpd.virtual`
+- `echo "account required pam_userdb.so db=/home/ubuntu/login" | sudo tee -a /etc/pam.d/vsftpd.virtual`
 
-# Fichier d’exceptions pour le chroot
-chroot_list_enable=YES
-chroot_list_file=/etc/vsftpd.chroot_list
+## 9. Modification du fichier de configuration vsftpd
+- `sudo nano /etc/vsftpd.conf`
 
-# Liste d’utilisateurs autorisés
-userlist_enable=YES
-userlist_file=/etc/vsftpd.userlist
-userlist_deny=NO
+On ajoute (ou vérifie) les lignes suivantes :
 
-# Activer les utilisateurs virtuels
 guest_enable=YES
-guest_username=ftp         # tous les virtuels utilisent l’utilisateur 'ftp'
+guest_username=ftp
 pam_service_name=vsftpd.virtual
-
-# Dossier par utilisateur virtuel (optionnel si user_sub_token utilisé)
 user_sub_token=$USER
 local_root=/home/ubuntu/$USER
 
-# Limites de connexions
-max_clients=200
-max_per_ip=4
+(Et on doit bien garder local_enable=YES, write_enable=YES, chroot_local_user=YES, etc. pour tes utilisateurs locaux.)
 
-# Répertoire sécurisé pour le chroot
-secure_chroot_dir=/var/run/vsftpd/empty
-
-# Activer configuration par utilisateur
-user_config_dir=/etc/vsftpd/vsftpd_user_conf
-
+## 10. Redémarrage de vsftpd
+- `sudo systemctl restart vsftpd`
+- `sudo systemctl status vsftpd`
 
 
