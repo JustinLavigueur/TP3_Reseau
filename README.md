@@ -172,3 +172,67 @@ On peut simplement ecrire **ftpadmin** dedans
 | secure_chroot_dir | /var/run/vsftpd/empty | Répertoire sécurisé nécessaire à vsftpd pour le chroot |
 
 ---
+
+# === Utilisateurs virtuels ===
+
+## 1. 
+sudo apt install db-util -y
+
+sudo db_load -T -t hash -f /home/ubuntu/login.txt /home/ubuntu/login.db
+
+sudo chmod 600 /home/ubuntu/login.*
+sudo chown root:root /home/ubuntu/login.db
+
+# ==============================
+# Configuration vsFTPd complète
+# Auteur : Justin
+# ==============================
+
+# Message d’accueil
+ftpd_banner=Bienvenue sur le serveur FTP de Justin !
+
+# Activer le mode standalone (IPv4)
+listen=YES
+listen_ipv6=NO
+
+# Interdire la connexion anonyme
+anonymous_enable=NO
+
+# Autoriser les utilisateurs locaux
+local_enable=YES
+write_enable=YES
+
+# Activer le chroot pour tous les utilisateurs locaux
+chroot_local_user=YES
+allow_writeable_chroot=YES
+
+# Fichier d’exceptions pour le chroot
+chroot_list_enable=YES
+chroot_list_file=/etc/vsftpd.chroot_list
+
+# Liste d’utilisateurs autorisés
+userlist_enable=YES
+userlist_file=/etc/vsftpd.userlist
+userlist_deny=NO
+
+# Activer les utilisateurs virtuels
+guest_enable=YES
+guest_username=ftp         # tous les virtuels utilisent l’utilisateur 'ftp'
+pam_service_name=vsftpd.virtual
+
+# Dossier par utilisateur virtuel (optionnel si user_sub_token utilisé)
+user_sub_token=$USER
+local_root=/home/ubuntu/$USER
+
+# Limites de connexions
+max_clients=200
+max_per_ip=4
+
+# Répertoire sécurisé pour le chroot
+secure_chroot_dir=/var/run/vsftpd/empty
+
+# Activer configuration par utilisateur
+user_config_dir=/etc/vsftpd/vsftpd_user_conf
+
+
+
