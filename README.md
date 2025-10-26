@@ -132,11 +132,6 @@ Le dossier parent appartient à root (sécurise le chroot) :
 - `sudo usermod -d /home/ubuntu/writer writer`
 - `sudo usermod -d /home/ubuntu ftpadmin`
 
-## Permission 
-- `sudo chown ftpadmin:ftpadmin /home/ubuntu`
-- `sudo chown writer:writer /home/ubuntu/writer`
-- `sudo chown reader:reader /home/ubuntu/reader`
-
 # Permissions sécurisées
 sudo chmod 755 /home/ubuntu/reader
 sudo chmod 755 /home/ubuntu/writer
@@ -144,6 +139,19 @@ sudo chmod 755 /home/ubuntu
 sudo chmod 755 /home/ubuntu/reader/files
 sudo chmod 755 /home/ubuntu/writer/files
 sudo chmod 755 /home/ubuntu/files
+
+# Fichiers de liste vsftpd
+- `sudo nano /etc/vsftpd.userlist`
+
+On met le contenu suivant dans vsftpd.userlist : 
+| Utilisateur | Description |
+|-------------|------------|
+| ftpadmin    | Utilisateur FTP administrateur autorisé à se connecter |
+| writer      | Utilisateur FTP pouvant lire et écrire dans son dossier |
+| reader      | Utilisateur FTP en lecture seule dans son dossier |
+
+- `sudo nano /etc/vsftpd.chroot_list`
+On peut simplement ecrire **ftpadmin** dedans
 
 ## Changer la configuration vsftpd.conf
 
