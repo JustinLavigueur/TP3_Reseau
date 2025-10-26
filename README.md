@@ -33,12 +33,12 @@ On édite le fichier de configuration pour qu'un utilisateur anonyme utilise FTP
 
 On met ce contenu suivant dans le fichier de configuration ftp (On va devoir le changer pour les utilisateurs locaux plus tard)
 
-### 🧩 Configuration FTP Anonyme
+### Configuration FTP Anonyme
 **Auteur : Justin**
 
 Ce fichier décrit la configuration du serveur **vsftpd** pour permettre un accès **anonyme en lecture seule**.
 
-#### ⚙️ Tableau de configuration
+#### Tableau de configuration
 
 | Directive | Description |
 |------------|--------------|
@@ -98,7 +98,7 @@ Résultat attendu :
 
 # === Utilisateurs locaux ===
 
-## Création des utilisateurs locaux dans la VM
+## 1. Création des utilisateurs locaux dans la VM
 On crée respectivement les utilisateurs locaux qu'on a de besoin pour le TP3 :
 - `sudo adduser ftpadmin # mot de passe : ftpadmin` 
 - `sudo adduser writer # mot de passe : writer`
@@ -106,40 +106,40 @@ On crée respectivement les utilisateurs locaux qu'on a de besoin pour le TP3 :
 
 Après cette étape, ftp va nous demander le mot de passe de chacun
 
-## Création de leurs dossiers
+## 2. Création de leurs dossiers
 On va faire correspondre les chemins indiqués selon l'énoncé :
 - `sudo mkdir -p /home/ubuntu/writer`
 - `sudo mkdir -p /home/ubuntu/reader`
 
-## Sous dossiers **files** (contenu présent dans les dossiers utilisateurs) 
+## 3. Sous dossiers **files** (contenu présent dans les dossiers utilisateurs) 
 - `sudo mkdir -p /home/ubuntu/writer/files`
 - `sudo mkdir -p /home/ubuntu/reader/files`
 
 On ne fait rien pour le dossier de ftpadmin, puisqu'il existe de base /home/ubuntu dans ftp
 
-## Attribution des propriétaires
+## 4. Attribution des propriétaires
 Le dossier parent appartient à root (sécurise le chroot) :
 - `sudo chown root:root /home/ubuntu`
 - `sudo chown root:root /home/ubuntu/writer`
 - `sudo chown root:root /home/ubuntu/reader`
 
-## Le sous-dossier “files” appartient à l'utilisateur
+## 5. Le sous-dossier “files” appartient à l'utilisateur
 - `sudo chown writer:writer /home/ubuntu/writer/files`
 - `sudo chown reader:reader /home/ubuntu/reader/files`
 
-## Changement des répertoires home des utilisateurs
+## 6. Changement des répertoires home des utilisateurs
 - `sudo usermod -d /home/ubuntu/reader reader`
 - `sudo usermod -d /home/ubuntu/writer writer`
 - `sudo usermod -d /home/ubuntu ftpadmin`
 
-## Permissions sécurisées
+## 7. Permissions sécurisées
 - `sudo chmod 755 /home/ubuntu/reader`
 - `sudo chmod 755 /home/ubuntu/writer`
 - `sudo chmod 755 /home/ubuntu`
 - `sudo chmod 755 /home/ubuntu/reader/files`
 - `sudo chmod 755 /home/ubuntu/writer/files`
 
-## Fichiers de liste vsftpd
+## 8. Fichiers de liste vsftpd
 - `sudo nano /etc/vsftpd.userlist`
 
 On met le contenu suivant dans vsftpd.userlist : 
@@ -152,7 +152,7 @@ On met le contenu suivant dans vsftpd.userlist :
 On peut simplement ecrire **ftpadmin** dedans
 - `sudo nano /etc/vsftpd.chroot_list`
 
-## Changement de configuration de FTP (vsftpd.conf)
+## 9. Changement de configuration de FTP (vsftpd.conf)
 
 | Directive | Valeur | Description |
 |-----------|--------|------------|
@@ -171,4 +171,4 @@ On peut simplement ecrire **ftpadmin** dedans
 | userlist_deny | NO | Seuls les utilisateurs présents dans `userlist_file` peuvent se connecter |
 | secure_chroot_dir | /var/run/vsftpd/empty | Répertoire sécurisé nécessaire à vsftpd pour le chroot |
 
-
+---
