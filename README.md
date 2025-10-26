@@ -132,15 +132,14 @@ Le dossier parent appartient à root (sécurise le chroot) :
 - `sudo usermod -d /home/ubuntu/writer writer`
 - `sudo usermod -d /home/ubuntu ftpadmin`
 
-# Permissions sécurisées
-sudo chmod 755 /home/ubuntu/reader
-sudo chmod 755 /home/ubuntu/writer
-sudo chmod 755 /home/ubuntu
-sudo chmod 755 /home/ubuntu/reader/files
-sudo chmod 755 /home/ubuntu/writer/files
-sudo chmod 755 /home/ubuntu/files
+## Permissions sécurisées
+- `sudo chmod 755 /home/ubuntu/reader`
+- `sudo chmod 755 /home/ubuntu/writer`
+- `sudo chmod 755 /home/ubuntu`
+- `sudo chmod 755 /home/ubuntu/reader/files`
+- `sudo chmod 755 /home/ubuntu/writer/files`
 
-# Fichiers de liste vsftpd
+## Fichiers de liste vsftpd
 - `sudo nano /etc/vsftpd.userlist`
 
 On met le contenu suivant dans vsftpd.userlist : 
@@ -150,28 +149,26 @@ On met le contenu suivant dans vsftpd.userlist :
 | writer      | Utilisateur FTP pouvant lire et écrire dans son dossier |
 | reader      | Utilisateur FTP en lecture seule dans son dossier |
 
-- `sudo nano /etc/vsftpd.chroot_list`
 On peut simplement ecrire **ftpadmin** dedans
+- `sudo nano /etc/vsftpd.chroot_list`
 
-## Changer la configuration vsftpd.conf
+## Changement de configuration de FTP (vsftpd.conf)
 
-
-# Autorise les utilisateurs locaux à se connecter
-local_enable=YES
-
-# Permet l’écriture pour eux (upload, suppression, renommage)
-write_enable=YES
-
-# Active le chroot pour tous les utilisateurs locaux
-chroot_local_user=YES
-
-# Active le fichier d’exceptions pour le chroot
-chroot_list_enable=YES
-chroot_list_file=/etc/vsftpd.chroot_list
-
-# Active la gestion d’une liste d’utilisateurs autorisés
-userlist_enable=YES
-userlist_file=/etc/vsftpd.userlist
-userlist_deny=NO
+| Directive | Valeur | Description |
+|-----------|--------|------------|
+| ftpd_banner | Bienvenue sur le serveur FTP de Justin ! | Message d’accueil affiché lors de la connexion FTP |
+| listen | YES | Active le service FTP sur IPv4 |
+| listen_ipv6 | NO | Désactive l’écoute IPv6 |
+| anonymous_enable | NO | Empêche la connexion anonyme |
+| local_enable | YES | Autorise les utilisateurs locaux à se connecter |
+| write_enable | YES | Permet l’écriture pour les utilisateurs locaux (upload, suppression, renommage) |
+| chroot_local_user | YES | Active le chroot pour tous les utilisateurs locaux |
+| allow_writeable_chroot | YES | Permet aux utilisateurs d’écrire dans leur home même si chroot est activé |
+| chroot_list_enable | YES | Active le fichier d’exceptions pour le chroot |
+| chroot_list_file | /etc/vsftpd.chroot_list | Fichier listant les utilisateurs non chrootés |
+| userlist_enable | YES | Active la gestion d’une liste d’utilisateurs autorisés |
+| userlist_file | /etc/vsftpd.userlist | Fichier listant les utilisateurs autorisés à se connecter |
+| userlist_deny | NO | Seuls les utilisateurs présents dans `userlist_file` peuvent se connecter |
+| secure_chroot_dir | /var/run/vsftpd/empty | Répertoire sécurisé nécessaire à vsftpd pour le chroot |
 
 
