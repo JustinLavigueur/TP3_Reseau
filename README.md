@@ -92,7 +92,6 @@ Voici une photo de ce que devrait donner:
 Résultat attendu pour la connexion anonyme :
 ![Connection_anonyme](Photos_TP3/1.Connection_anonyme.png)
 
-
 ---
 
 # === Utilisateurs locaux ===
@@ -103,7 +102,8 @@ On crée respectivement les utilisateurs locaux qu'on a de besoin pour le TP3 :
 - `sudo adduser writer # mot de passe : writer`
 - `sudo adduser reader # mot de passe : reader`
 
-Après cette étape, ftp va nous demander le mot de passe de chacun
+**Pour information**, j'ai décidé de créer l'utilisateur du nom `ftpadmin` à la place de `admin` comme demandé dans le TP3.  
+La raison est simple : quand j'écrivais `admin` dans le fichier `vsftpd.userlist`, **il me mettait en mode admin sur ma VM** et quand je quittais, **la clé SSL ne marchait plus**, donc j'ai dû **recommencer 2-3 instances** juste à cause de ça.
 
 ## 2. Création de leurs dossiers
 On va faire correspondre les chemins indiqués selon l'énoncé :
@@ -119,7 +119,6 @@ On ne fait rien pour le dossier de ftpadmin, puisqu'il existe de base /home/ubun
 Pour lecture seule : 
 - `sudo chmod 555 /home/ubuntu/reader/files`
 
-
 ## 4. Attribution des propriétaires
 Le dossier parent appartient à root (sécurise le chroot) :
 - `sudo chown root:root /home/ubuntu`
@@ -134,6 +133,9 @@ Le dossier parent appartient à root (sécurise le chroot) :
 - `sudo usermod -d /home/ubuntu/reader reader`
 - `sudo usermod -d /home/ubuntu/writer writer`
 - `sudo usermod -d /home/ubuntu ftpadmin`
+
+  Voici une photo qui montre les répertoires home des utilisateurs:
+  ![Home_User](Photos_TP3/Screenshot2025-10-25221641.png)
 
 ## 7. Permissions sécurisées
 - `sudo chmod 755 /home/ubuntu/reader`
@@ -152,7 +154,9 @@ On met le contenu suivant dans vsftpd.userlist :
 | writer      | Utilisateur FTP pouvant lire et écrire dans son dossier |
 | reader      | Utilisateur FTP en lecture seule dans son dossier |
 
-On peut simplement ecrire **ftpadmin** dedans
+Voici une photo pour le montrer:
+
+On peut simplement ecrire **ftpadmin** dans vsftpd.chroot_list puisque cèst le seul utilisateur qui n'est pas chroot dans un dossier propre (son home)
 - `sudo nano /etc/vsftpd.chroot_list`
 
 ## 9. Changement de configuration de FTP (vsftpd.conf)
@@ -173,6 +177,11 @@ On peut simplement ecrire **ftpadmin** dedans
 | userlist_file | /etc/vsftpd.userlist | Fichier listant les utilisateurs autorisés à se connecter |
 | userlist_deny | NO | Seuls les utilisateurs présents dans `userlist_file` peuvent se connecter |
 | secure_chroot_dir | /var/run/vsftpd/empty | Répertoire sécurisé nécessaire à vsftpd pour le chroot |
+
+## 10. Photos qui montrent certaines étapes:
+
+Résultat attendu pour le chroot de l'utilisateur reader  :
+![Connection_anonyme](Photos_TP3/5.reader_chroot.png)
 
 ---
 
