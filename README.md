@@ -82,11 +82,15 @@ On ouvre les ports FTP et recharge le firewall :
  Dans mon cas, j'ai installé tree pour visualiser l'arborescence du dossier root_anon:
  - `sudo apt install tree`
 
-On vérifie la structure : 
+On vérifie la structure avec la commande suivante: 
 - `tree /srv/ftp/root_anon`
 
-![Texte alternatif](Photos_TP3/1.Connection_anonyme.png)
-Résultat attendu :
+Voici une photo de ce que devrait donner:
+![Vérification_Structure_FTP](Photos_TP3/1.VérificationStructurelFTP.png)
+
+## 6. FTP anonyme installé correctement
+Résultat attendu pour la connexion anonyme :
+![Connection_anonyme](Photos_TP3/1.Connection_anonyme.png)
 
 
 ---
