@@ -135,7 +135,7 @@ Le dossier parent appartient à root (sécurise le chroot) :
 - `sudo usermod -d /home/ubuntu ftpadmin`
 
   Voici une photo qui montre les répertoires home des utilisateurs:
-  ![Home_User](Photos_TP3/Screenshot2025-10-25221641.png)
+  ![Home_User](Photos_TP3/aa.png)
 
 ## 7. Permissions sécurisées
 - `sudo chmod 755 /home/ubuntu/reader`
