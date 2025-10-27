@@ -86,11 +86,11 @@ On vérifie la structure avec la commande suivante:
 - `tree /srv/ftp/root_anon`
 
 Voici une photo de ce que devrait donner:
-![Vérification_Structure_FTP](Photos_TP3/2.VérificationStructureFTP.png)
+
 
 ## 6. FTP anonyme installé correctement
 Résultat attendu pour la connexion anonyme :
-![Connection_anonyme](Photos_TP3/1.Connection_anonyme.png)
+
 
 ---
 
@@ -181,7 +181,6 @@ On peut simplement ecrire **ftpadmin** dans vsftpd.chroot_list puisque cèst le 
 ## 10. Photos qui montrent certaines étapes:
 
 Résultat attendu pour le chroot de l'utilisateur reader  :
-![Connection_anonyme](Photos_TP3/5.reader_chroot.png)
 
 ---
 
