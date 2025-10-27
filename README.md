@@ -10,6 +10,7 @@
 On met à jour le système et on installe vsftpd : 
 - `sudo apt update`
 - `sudo apt install vsftpd -y`
+- `sudo systemctl status vsftpd`
 
 On crée un dossier pour l’FTP anonyme :  
 - `sudo mkdir -p /srv/ftp/root_anon`
