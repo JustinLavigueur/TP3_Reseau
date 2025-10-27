@@ -86,7 +86,7 @@ On vérifie la structure avec la commande suivante:
 - `tree /srv/ftp/root_anon`
 
 Voici une photo de ce que devrait donner:
-![Vérification_Structure_FTP](Photos_TP3/1.VérificationStructurelFTP.png)
+![Vérification_Structure_FTP](Photos_TP3/2.VérificationStructureFTP.png)
 
 ## 6. FTP anonyme installé correctement
 Résultat attendu pour la connexion anonyme :
