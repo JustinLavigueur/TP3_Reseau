@@ -117,6 +117,10 @@ On va faire correspondre les chemins indiqués selon l'énoncé :
 
 On ne fait rien pour le dossier de ftpadmin, puisqu'il existe de base /home/ubuntu dans ftp
 
+Pour lecture seule : 
+- `sudo chmod 555 /home/ubuntu/reader/files`
+
+
 ## 4. Attribution des propriétaires
 Le dossier parent appartient à root (sécurise le chroot) :
 - `sudo chown root:root /home/ubuntu`
