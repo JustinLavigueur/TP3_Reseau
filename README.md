@@ -94,7 +94,6 @@ Résultat attendu :
 │   └── audioHumoristique.mp3
 └── UneBlague.txt
 
-
 ---
 
 # === Utilisateurs locaux ===
@@ -125,8 +124,8 @@ Pour lecture seule :
 ## 4. Attribution des propriétaires
 Le dossier parent appartient à root (sécurise le chroot) :
 - `sudo chown root:root /home/ubuntu`
-- `sudo chown root:root /home/ubuntu/writer`
-- `sudo chown root:root /home/ubuntu/reader`
+- `sudo chown ftpadmin:ftpadmin /home/ubuntu/writer`
+- `sudo chown ftpadmin:ftpadmin /home/ubuntu/reader`
 
 ## 5. Le sous-dossier “files” appartient à l'utilisateur
 - `sudo chown writer:writer /home/ubuntu/writer/files`
@@ -238,4 +237,38 @@ local_root=/home/ubuntu/$USER
 - `sudo systemctl restart vsftpd`
 - `sudo systemctl status vsftpd`
 
+---
 
+# === SSL ===
+
+## 1. Création du certificat
+Il vous faut installer le paquet openssl:
+- `sudo openssl req -new -x509 -days 365 -nodes -out /etc/ssl/private/vsftpd.cert.pem -keyout /etc/ssl/private/vsftpd.key.pem`
+
+Openssl va vous poser quelques questions, la plus critique est celle ci :
+- `Common Name (eg, YOUR name) []:`
+
+Un certificat (vsftpd.cert.pem) ainsi qu'une clé privée (vsftpd.key.pem) ont été générés dans le dossier /etc/ssl/private/. IL faut les sécuriser:
+- `sudo chown root:root /etc/ssl/private/vsftpd.cert.*`
+- `sudo chmod 600 /etc/ssl/private/vsftpd.cert.*`
+
+## 2. On modifie vsftpd.conf pour SSL
+| Directive               | Valeur                         | Description                                                                 |
+|-------------------------|--------------------------------|-----------------------------------------------------------------------------|
+| ssl_enable              | YES                            | Active le support SSL/TLS pour vsftpd                                        |
+| allow_anon_ssl          | NO                             | Interdit aux utilisateurs anonymes d’utiliser SSL                            |
+| force_local_data_ssl    | YES                            | Force le chiffrement SSL/TLS pour les transferts de données                  |
+| force_local_logins_ssl  | YES                            | Force le chiffrement SSL/TLS pour les connexions des utilisateurs locaux     |
+| ssl_tlsv1               | YES                            | Autorise le protocole TLSv1                                                 |
+| ssl_sslv2               | NO                             | Désactive le protocole SSLv2                                               |
+| ssl_sslv3               | NO                             | Désactive le protocole SSLv3                                               |
+| rsa_cert_file           | /etc/ssl/certs/vsftpd.crt     | Chemin vers le certificat SSL du serveur                                    |
+| rsa_private_key_file    | /etc/ssl/private/vsftpd.key   | Chemin vers la clé privée correspondante                                     |
+| require_ssl_reuse       | NO                             | Empêche la réutilisation des sessions SSL (utile pour certains clients)      |
+| ssl_ciphers             | HIGH                           | Définit le niveau de chiffrement pour SSL/TLS (ici : fort)                  |
+
+
+## 3. Redémarrage de vsftpd
+- `sudo systemctl restart vsftpd` 
+
+## 4. Test avec Filezilla
