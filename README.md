@@ -62,7 +62,6 @@ Cette configuration permet à quiconque de se connecter en FTP en mode anonyme (
 de **lire uniquement** les fichiers présents dans `/srv/ftp/root_anon`,  
 sans pouvoir les modifier, supprimer ni en créer de nouveaux.
 
-
 On redémarre et active le service vsftpd :  
 - `sudo systemctl restart vsftpd`
 - `sudo systemctl enable vsftpd`
@@ -86,13 +85,9 @@ On ouvre les ports FTP et recharge le firewall :
 On vérifie la structure : 
 - `tree /srv/ftp/root_anon`
 
+![Texte alternatif](Photos_TP3/1.Connection_anonyme.png)
 Résultat attendu :
-/srv/ftp/root_anon
-├── MonMetFavoris.txt
-├── MyMemes/
-│   ├── MonMeme.png
-│   └── audioHumoristique.mp3
-└── UneBlague.txt
+
 
 ---
 
