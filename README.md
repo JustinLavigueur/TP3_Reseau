@@ -195,7 +195,7 @@ On peut simplement ecrire **ftpadmin** dans vsftpd.chroot_list puisque cèst le 
 | anonymous_enable | NO | Empêche la connexion anonyme |
 | local_enable | YES | Autorise les utilisateurs locaux à se connecter |
 | write_enable | YES | Permet l’écriture pour les utilisateurs locaux (upload, suppression, renommage) |
-| chroot_local_user | YES | Active le chroot pour tous les utilisateurs locaux |
+| chroot_local_user | NO | Active le chroot pour tous les utilisateurs locaux |
 | allow_writeable_chroot | YES | Permet aux utilisateurs d’écrire dans leur home même si chroot est activé |
 | chroot_list_enable | YES | Active le fichier d’exceptions pour le chroot |
 | chroot_list_file | /etc/vsftpd.chroot_list | Fichier listant les utilisateurs non chrootés |
