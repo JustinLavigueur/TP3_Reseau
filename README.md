@@ -24,6 +24,9 @@ Pour voir le contenu de ces fichiers fraichement créés:
 - `cat /srv/ftp/root_anon/UneBlague.txt`
 - `cat /srv/ftp/root_anon/MonMetFavoris.txt`
 
+Image pour cat :
+![Exemple cat](Photos_TP3_1/FTP_anonyme/Cat.png)
+
 On crée par la suite un sous-dossier pour d’autres fichiers selon les dires du prof :  
 - `sudo mkdir -p /srv/ftp/root_anon/MyMemes`
 - `sudo touch /srv/ftp/root_anon/MyMemes/MonMeme.png`
