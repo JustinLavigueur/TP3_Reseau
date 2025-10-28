@@ -299,6 +299,9 @@ Il vous faut installer le paquet openssl:
 Openssl va vous poser quelques questions, la plus critique est celle ci :
 - `Common Name (eg, YOUR name) []:`
 
+Photo qui montre la création du certificat SSL:
+![Certificat_SSL](Photos_TP3_1/SSL/certificat_SSL.png)
+
 Un certificat (vsftpd.cert.pem) ainsi qu'une clé privée (vsftpd.key.pem) ont été générés dans le dossier /etc/ssl/private/. IL faut les sécuriser:
 - `sudo chown root:root /etc/ssl/private/vsftpd.cert.*`
 - `sudo chmod 600 /etc/ssl/private/vsftpd.cert.*`
@@ -320,6 +323,9 @@ Un certificat (vsftpd.cert.pem) ainsi qu'une clé privée (vsftpd.key.pem) ont �
 
 
 ## 3. Redémarrage de vsftpd
-- `sudo systemctl restart vsftpd` 
+- `sudo systemctl restart vsftpd`
+
+ Preuve que le SSL est bien en marche sur FTP:
+ ![Preuve_SSL](Photos_TP3_1/SSL/Preuve.png)
 
 ## 4. Test avec Filezilla
