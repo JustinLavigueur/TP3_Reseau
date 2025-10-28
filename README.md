@@ -219,8 +219,9 @@ On peut simplement écrire **writer** et **reader** dans vsftpd.chroot_list puis
 
 ## 11. Photos qui montrent certaines étapes:
 
-Résultat attendu pour le chroot de l'utilisateur reader  :
+Résultat attendu pour le chroot de l'utilisateur reader dans le ftp et dans la VM  :
 ![reader](Photos_TP3_1/Utilisateurs_locaux/reader_ftp_pwd.png)
+![reader](Photos_TP3_1/Utilisateurs_locaux/homereader.png)
 
 Le home des utilisateurs:
 ![reader](Photos_TP3_1/Utilisateurs_locaux/reader_ftp_pwd.png)
