@@ -243,7 +243,7 @@ Le home des utilisateurs:
 - `sudo adduser --home /home/ftp --shell /bin/false ftp`
 
 ## 4. On donne la propriété des dossiers à 'ftp'
-- `sudo chown -R ftp:ftp /home/ubuntu/iamgroot
+- `sudo chown -R ftp:ftp /home/ubuntu/iamgroot`
 - `sudo chown -R ftp:ftp /home/ubuntu/vwrite`
 - `sudo chown -R ftp:ftp /home/ubuntu/vreader`
 
