@@ -112,7 +112,7 @@ Voici une photo de ce que devrait donner:
 Résultat attendu pour la connexion anonyme :
 ![Connection_anonyme](Photos_TP3_1/FTP_anonyme/Connection_ftp.png)
 
-On peut par la suite regarder si nos fichiers créés un peu plus haut sont présents et mettre un des fichiers sur notre ordinateur personnel avec mget:
+On peut par la suite regarder si nos fichiers créés un peu plus haut sont présents et mettre un des fichiers sur notre ordinateur personnel avec la commande mget:
 ![mget](Photos_TP3_1/FTP_anonyme/mget.png)
 
 On vérifie s'il est bien sur notre ordinateur personnel: 
