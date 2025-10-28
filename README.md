@@ -77,6 +77,12 @@ On redémarre et active le service vsftpd :
 - `sudo systemctl restart vsftpd`
 - `sudo systemctl enable vsftpd`
 
+On regarde le status de vsftpd pour voir s'il est actif:
+![status](Photos_TP3_1/FTP_anonyme/status_vsftpd.png)
+
+S'il est écrit inactif, on peut vérifier le problème avec cette commande-ci (Elle permet de regarder les logs de vsftpd):
+- `sudo journalctl -u vsftpd --no-pager -n 30`
+
 ## 4. Configuration du firewall
 On installe firewalld et on le démarre :  
 - `sudo apt-get install firewalld`
@@ -89,6 +95,9 @@ On ouvre les ports FTP et recharge le firewall :
 - `sudo firewall-cmd --reload`
 - `sudo firewall-cmd --list-all`
 
+Dans cette image, on voit que le port 20 et 21 (pour ftp) sont acceptés sur le firewall:
+![firewall_list](Photos_TP3_1/FTP_anonyme/firewall_list.png)
+
 ## 5. Vérification de la structure du dossier FTP
  Dans mon cas, j'ai installé tree pour visualiser l'arborescence du dossier root_anon:
  - `sudo apt install tree`
@@ -97,10 +106,17 @@ On vérifie la structure avec la commande suivante:
 - `tree /srv/ftp/root_anon`
 
 Voici une photo de ce que devrait donner:
-
+![tree](Photos_TP3_1/FTP_anonyme/tree_root.png)
 
 ## 6. FTP anonyme installé correctement
 Résultat attendu pour la connexion anonyme :
+![Connection_anonyme](Photos_TP3_1/FTP_anonyme/Connection_ftp.png)
+
+On peut par la suite regarder si nos fichiers créés un peu plus haut sont présents et mettre un des fichiers sur notre ordinateur personnel avec mget:
+![mget](Photos_TP3_1/FTP_anonyme/mget.png)
+
+On vérifie s'il est bien sur notre ordinateur personnel: 
+![ordi](Photos_TP3_1/FTP_anonyme/ordi.png)
 
 
 ---
