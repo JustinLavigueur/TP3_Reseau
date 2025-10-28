@@ -8,8 +8,8 @@ writer
 
 # Utilisateurs virtuels
 iamgroot
-ftpadmin
+iamgroot
 vwrite
-writer
+vwrite
 vreader
-reader
+vreader
