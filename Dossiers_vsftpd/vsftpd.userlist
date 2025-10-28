@@ -1,0 +1,5 @@
+# Ce fichier contient la liste des utilisateurs autorisés à se connecter (si userlist_deny=NO dans le vsftpd.conf)
+
+ftpadmin
+writer
+reader

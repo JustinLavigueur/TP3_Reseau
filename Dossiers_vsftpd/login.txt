@@ -1,0 +1,15 @@
+# Utilisateurs locaux
+ftpadmin
+ftpadmin
+reader
+reader
+writer
+writer
+
+# Utilisateurs virtuels
+iamgroot
+ftpadmin
+vwrite
+writer
+vreader
+reader
