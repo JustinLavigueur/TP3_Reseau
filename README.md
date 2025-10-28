@@ -140,7 +140,7 @@ On va faire correspondre les chemins indiqués selon l'énoncé :
 - `sudo mkdir -p /home/ubuntu/writer/files`
 - `sudo mkdir -p /home/ubuntu/reader/files`
 
-On ne fait rien pour le dossier de ftpadmin, puisqu'il existe de base /home/ubuntu dans ftp
+On ne fait rien pour le dossier de ftpadmin, puisqu'il existe de base /home/ubuntu dans vsftpd
 
 Pour lecture seule : 
 - `sudo chmod 555 /home/ubuntu/reader/files`
@@ -161,7 +161,7 @@ Le dossier parent appartient à root (sécurise le chroot) :
 - `sudo usermod -d /home/ubuntu ftpadmin`
 
   Voici une photo qui montre les répertoires home des utilisateurs:
-  ![Home_User](Photos_TP3/aa.png)
+  
 
 ## 7. Permissions sécurisées
 - `sudo chmod 755 /home/ubuntu/reader`
@@ -170,7 +170,7 @@ Le dossier parent appartient à root (sécurise le chroot) :
 - `sudo chmod 755 /home/ubuntu/reader/files`
 - `sudo chmod 755 /home/ubuntu/writer/files`
 
-## 8. Fichiers de liste vsftpd
+## 8. Fichier de userlist.vsftpd
 - `sudo nano /etc/vsftpd.userlist`
 
 On met le contenu suivant dans vsftpd.userlist : 
@@ -182,10 +182,14 @@ On met le contenu suivant dans vsftpd.userlist :
 
 Voici une photo pour le montrer:
 
-On peut simplement ecrire **ftpadmin** dans vsftpd.chroot_list puisque cèst le seul utilisateur qui n'est pas chroot dans un dossier propre (son home)
+## 9. Fichier de vsftpd.chroot_list
 - `sudo nano /etc/vsftpd.chroot_list`
 
-## 9. Changement de configuration de FTP (vsftpd.conf)
+On peut simplement écrire **writer** et **reader** dans vsftpd.chroot_list puisque ce sont les seuls utilisateurs qui sont chroot dans un dossier propre (son home)
+
+**Pourquoi?** Parce que dans le fichier de configuration, ces directives permettent de contrôler précisément quels utilisateurs sont confinés. En mettant chroot_local_user=NO, on évite de restreindre tous les utilisateurs locaux par défaut, et en utilisant chroot_list_enable=YES avec chroot_list_file=/etc/vsftpd.chroot_list, on ne chroote que ceux qui en ont besoin, donc les utilisetaurs writer et reader. Cela offre à la fois sécurité et flexibilité pour la gestion des accès plus court et simple.
+
+## 10. Changement de configuration de FTP (vsftpd.conf)
 
 | Directive | Valeur | Description |
 |-----------|--------|------------|
@@ -204,7 +208,7 @@ On peut simplement ecrire **ftpadmin** dans vsftpd.chroot_list puisque cèst le 
 | userlist_deny | NO | Seuls les utilisateurs présents dans `userlist_file` peuvent se connecter |
 | secure_chroot_dir | /var/run/vsftpd/empty | Répertoire sécurisé nécessaire à vsftpd pour le chroot |
 
-## 10. Photos qui montrent certaines étapes:
+## 11. Photos qui montrent certaines étapes:
 
 Résultat attendu pour le chroot de l'utilisateur reader  :
 
