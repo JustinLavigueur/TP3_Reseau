@@ -164,6 +164,7 @@ Le dossier parent appartient à root (sécurise le chroot) :
 - `sudo usermod -d /home/ubuntu ftpadmin`
 
   Voici une photo qui montre les répertoires home des utilisateurs:
+  ![home_users](Photos_TP3_1/Utilisateurs_locaux/home_users.png)
   
 
 ## 7. Permissions sécurisées
@@ -184,13 +185,18 @@ On met le contenu suivant dans vsftpd.userlist :
 | reader      | Utilisateur FTP en lecture seule dans son dossier |
 
 Voici une photo pour le montrer:
+![userlist](Photos_TP3_1/Utilisateurs_locaux/userlist.png)
 
 ## 9. Fichier de vsftpd.chroot_list
 - `sudo nano /etc/vsftpd.chroot_list`
 
+Photo qui montre le contenu du fichier vsftpd.chroot_list :
+![chroot_list](Photos_TP3_1/Utilisateurs_locaux/chroot_list.png)
+
 On peut simplement écrire **writer** et **reader** dans vsftpd.chroot_list puisque ce sont les seuls utilisateurs qui sont chroot dans un dossier propre (son home)
 
-**Pourquoi?** Parce que dans le fichier de configuration, ces directives permettent de contrôler précisément quels utilisateurs sont confinés. En mettant chroot_local_user=NO, on évite de restreindre tous les utilisateurs locaux par défaut, et en utilisant chroot_list_enable=YES avec chroot_list_file=/etc/vsftpd.chroot_list, on ne chroote que ceux qui en ont besoin, donc les utilisetaurs writer et reader. Cela offre à la fois sécurité et flexibilité pour la gestion des accès plus court et simple.
+**Pourquoi?** Parce que dans le fichier de configuration, ces directives permettent de contrôler précisément quels utilisateurs sont confinés. En mettant chroot_local_user=NO, on évite de restreindre tous les utilisateurs locaux par défaut, et en utilisant chroot_list_enable=YES avec chroot_list_file=/etc/vsftpd.chroot_list, on ne chroote que ceux qui en ont besoin, donc les utilisateurs writer et reader. Cela offre à la fois sécurité et flexibilité pour la gestion des accès plus court et simple.
+![Pourquoi](Photos_TP3_1/Utilisateurs_locaux/Pourquoi.png)
 
 ## 10. Changement de configuration de FTP (vsftpd.conf)
 
@@ -214,6 +220,10 @@ On peut simplement écrire **writer** et **reader** dans vsftpd.chroot_list puis
 ## 11. Photos qui montrent certaines étapes:
 
 Résultat attendu pour le chroot de l'utilisateur reader  :
+![reader](Photos_TP3_1/Utilisateurs_locaux/reader_ftp_pwd.png)
+
+Le home des utilisateurs:
+![reader](Photos_TP3_1/Utilisateurs_locaux/reader_ftp_pwd.png)
 
 ---
 
