@@ -20,6 +20,10 @@ On crée des fichiers pour tester :
 - `echo "Ha ha, blague simple !" | sudo tee /srv/ftp/root_anon/UneBlague.txt`
 - `echo "J’aime les pâtes." | sudo tee /srv/ftp/root_anon/MonMetFavoris.txt`
 
+Pour voir le contenu de ces fichiers fraichement créés:
+- `cat /srv/ftp/root_anon/UneBlague.txt`
+- `cat /srv/ftp/root_anon/MonMetFavoris.txt`
+
 On crée par la suite un sous-dossier pour d’autres fichiers selon les dires du prof :  
 - `sudo mkdir -p /srv/ftp/root_anon/MyMemes`
 - `sudo touch /srv/ftp/root_anon/MyMemes/MonMeme.png`
@@ -61,6 +65,9 @@ Ce fichier décrit la configuration du serveur **vsftpd** pour permettre un acc�
 Cette configuration permet à quiconque de se connecter en FTP en mode anonyme (`ftp -A <adresse_IP>`),  
 de **lire uniquement** les fichiers présents dans `/srv/ftp/root_anon`,  
 sans pouvoir les modifier, supprimer ni en créer de nouveaux.
+
+Voici une image de ce à quoi le fichier de configuration devrait ressembler pour ftp anonyme:
+
 
 On redémarre et active le service vsftpd :  
 - `sudo systemctl restart vsftpd`
