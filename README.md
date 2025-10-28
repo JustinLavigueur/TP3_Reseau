@@ -128,6 +128,9 @@ On crée respectivement les utilisateurs locaux qu'on a de besoin pour le TP3 :
 - `sudo adduser writer # mot de passe : writer`
 - `sudo adduser reader # mot de passe : reader`
 
+Exemple de création de l'utilisateur ftpadmin :
+![Création_ftpadmin](Photos_TP3_1/Utilisateurs_locaux/Creation_ftpadmin.png)
+
 **Pour information**, j'ai décidé de créer l'utilisateur du nom `ftpadmin` à la place de `admin` comme demandé dans le TP3.  
 La raison est simple : quand j'écrivais `admin` dans le fichier `vsftpd.userlist`, **il me mettait en mode admin sur ma VM** et quand je quittais, **la clé SSL ne marchait plus**, donc j'ai dû **recommencer 2-3 instances** juste à cause de ça.
 
