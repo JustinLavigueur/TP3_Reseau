@@ -118,7 +118,6 @@ On peut par la suite regarder si nos fichiers créés sont présents et mettre u
 On vérifie s'il est bien sur notre ordinateur personnel: 
 ![ordi](Photos_TP3_1/FTP_anonyme/ordi.png)
 
-
 ---
 
 # === Utilisateurs locaux ===
