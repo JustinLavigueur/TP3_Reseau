@@ -303,8 +303,8 @@ Photo qui montre la création du certificat SSL:
 ![Certificat_SSL](Photos_TP3_1/SSL/certificat_SSL.png)
 
 Un certificat (vsftpd.cert.pem) ainsi qu'une clé privée (vsftpd.key.pem) ont été générés dans le dossier /etc/ssl/private/. Il faut les sécuriser après la création du certificat:
-- `sudo chown root:root /etc/ssl/private/vsftpd.cert.*`
-- `sudo chmod 600 /etc/ssl/private/vsftpd.cert.*`
+- `sudo chown root:root /etc/ssl/private/vsftpd.cert.pem /etc/ssl/private/vsftpd.key.pem*`
+- `sudo chmod 600 /etc/ssl/private/vsftpd.cert.pem /etc/ssl/private/vsftpd.key.pem*`
 
 ## 2. On modifie vsftpd.conf pour SSL
 | Directive               | Valeur                         | Description                                                                 |
