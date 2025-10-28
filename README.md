@@ -69,8 +69,9 @@ Cette configuration permet à quiconque de se connecter en FTP en mode anonyme (
 de **lire uniquement** les fichiers présents dans `/srv/ftp/root_anon`,  
 sans pouvoir les modifier, supprimer ni en créer de nouveaux.
 
-Voici une image de ce à quoi le fichier de configuration devrait ressembler pour ftp anonyme:
-
+Voici plusieurs images de ce à quoi le fichier de configuration devrait ressembler pour ftp anonyme:
+![conf_1](Photos_TP3_1/FTP_anonyme/conf_ftp.png)
+![conf_2](Photos_TP3_1/FTP_anonyme/conf_ftp_2.png)
 
 On redémarre et active le service vsftpd :  
 - `sudo systemctl restart vsftpd`
