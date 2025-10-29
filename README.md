@@ -354,7 +354,7 @@ On clique sur Connexion.
 Si le SSL est bien activé, une fenêtre s’ouvrira pour te demander d’accepter le certificat TLS.
 
 Voici une photo qui montre bien la fenêtre:
-
+![Demande_asile_SSL](Photos_TP3_1/SSL/demande_asile.png)
 
 Accepte-le, puis la connexion s’établira de manière sécurisée.
 
