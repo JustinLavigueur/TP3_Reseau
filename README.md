@@ -252,7 +252,7 @@ Le home des utilisateurs:
 - `sudo chmod -R 775 /home/ubuntu/vwrite     # lecture + écriture`
 - `sudo chmod -R 755 /home/ubuntu/vreader    # lecture seule`
 
-## 6. Création du fichier de login (nom/mot de passe). IL est déjà créé de base avec le nom de mes utilisateurs locaux 
+## 6. Création du fichier de login (nom/mot de passe). Il est déjà créé de base avec le nom de mes utilisateurs locaux 
 - `sudo nano /home/ubuntu/login.txt`
 
 iamgroot
@@ -282,7 +282,7 @@ pam_service_name=vsftpd.virtual
 user_sub_token=$USER
 local_root=/home/ubuntu/$USER
 
-(Et on doit bien garder local_enable=YES, write_enable=YES, chroot_local_user=YES, etc. pour tes utilisateurs locaux.)
+(Et on doit bien garder local_enable=YES, write_enable=YES, chroot_local_user=YES, etc. pour les utilisateurs locaux.)
 
 ## 10. Redémarrage de vsftpd
 - `sudo systemctl restart vsftpd`
