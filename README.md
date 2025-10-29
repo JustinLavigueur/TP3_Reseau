@@ -195,7 +195,7 @@ Photo qui montre le contenu du fichier vsftpd.chroot_list :
 
 On peut simplement écrire **writer** et **reader** dans vsftpd.chroot_list puisque ce sont les seuls utilisateurs qui sont chroot dans un dossier propre (son home)
 
-**Pourquoi?** Parce que dans le fichier de configuration, ces directives permettent de contrôler précisément quels utilisateurs sont confinés. En mettant chroot_local_user=NO, on évite de restreindre tous les utilisateurs locaux par défaut, et en utilisant chroot_list_enable=YES avec chroot_list_file=/etc/vsftpd.chroot_list, on ne chroote que ceux qui en ont besoin, donc les utilisateurs writer et reader. Cela offre à la fois sécurité et flexibilité pour la gestion des accès plus court et simple.
+**Pourquoi?** Parce que dans le fichier de configuration, ces directives permettent de contrôler précisément quels utilisateurs sont confinés. En mettant chroot_local_user=NO, on évite de restreindre tous les utilisateurs locaux par défaut, et en utilisant chroot_list_enable=YES avec chroot_list_file=/etc/vsftpd.chroot_list, on ne chroote que ceux qui en ont besoin, donc les utilisateurs writer et reader.
 ![Pourquoi](Photos_TP3_1/Utilisateurs_locaux/Pourquoi.png)
 
 ## 10. Changement de configuration de FTP (vsftpd.conf)
