@@ -252,15 +252,14 @@ Le home des utilisateurs:
 - `sudo chmod -R 775 /home/ubuntu/vwrite     # lecture + écriture`
 - `sudo chmod -R 755 /home/ubuntu/vreader    # lecture seule`
 
+![Permissions](Photos_TP3_1/Utilisateurs_virtuels/Virtual permissions.png)
+
 ## 6. Création du fichier de login (nom/mot de passe). Il est déjà créé de base avec le nom de mes utilisateurs locaux 
 - `sudo nano /home/ubuntu/login.txt`
 
-iamgroot
-iamgroot
-vwrite
-vwrite
-vreader
-vreader
+On doit mettre le nom des utilisateurs virtuels et leur mot de passe (ftpadmin/ftpadmin):
+![login.txt](Photos_TP3_1/Utilisateurs_virtuels/login_txt.png)
+
 
 ## 7. Génération de la base de données pour PAM à partir de login.txt
 - `sudo db_load -T -t hash -f /home/ubuntu/login.txt /home/ubuntu/login.db`
@@ -270,6 +269,9 @@ vreader
 ## 8. Création le fichier PAM pour les utilisateurs virtuels
 - `echo "auth required pam_userdb.so db=/home/ubuntu/login" | sudo tee /etc/pam.d/vsftpd.virtual`
 - `echo "account required pam_userdb.so db=/home/ubuntu/login" | sudo tee -a /etc/pam.d/vsftpd.virtual`
+
+Voici une photo qui le montre:
+![PAM](Photos_TP3_1/Utilisateurs_virtuels/ContenuPam.png)
 
 ## 9. Modification du fichier de configuration vsftpd
 - `sudo nano /etc/vsftpd.conf`
