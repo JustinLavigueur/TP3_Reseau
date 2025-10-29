@@ -362,6 +362,7 @@ Voici une photo qui montre bien la fenêtre:
 
 Accepte-le, puis la connexion s’établira de manière sécurisée.
 ![connexion_SSL](Photos_TP3_1/SSL/connexion.png)
+![preuve_SSL](Photos_TP3_1/SSL/preuve.png)
 
 
 
