@@ -112,6 +112,9 @@ Voici une photo de ce que devrait donner:
 Résultat attendu pour la connexion anonyme :
 ![Connection_anonyme](Photos_TP3_1/FTP_anonyme/Connection_ftp.png)
 
+Si jamais on doit mettre le ftp en passive:
+- `quote PASV`
+
 On peut par la suite regarder si nos fichiers créés sont présents et mettre un des fichiers sur notre ordinateur personnel avec mget:
 ![mget](Photos_TP3_1/FTP_anonyme/mget.png)
 
