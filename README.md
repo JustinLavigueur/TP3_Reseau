@@ -327,10 +327,11 @@ Un certificat (vsftpd.cert.pem) ainsi qu'une clé privée (vsftpd.key.pem) ont �
 
  Commande qui montre que le SSL est bien en marche sur FTP:
  - `openssl s_client -connect 68.233.126.255:21 -starttls ftp`
+
+Photo qui montre le fonctionnement de SSL:
  ![Preuve_SSL](Photos_TP3_1/SSL/Preuve.png)
 
 ## 4. Test avec Filezilla
-
 Connexion en mode FTP sécurisé (FTPS explicite)
 
 - On ouvre FileZilla si déjà installé.
