@@ -348,7 +348,7 @@ Connexion en mode FTP sécurisé (FTPS explicite)
 | Utilisateur                  | ftpadmin                                     | Compte local créé pour le test FTP sécurisé.                               |
 | Mot de passe                 | ftpadmin                                     | Mot de passe associé à l’utilisateur ftpadmin.                             |
 | Vérification certificat TLS  | Accepter le certificat TLS à la première connexion | Confirme que le chiffrement SSL est actif et que la connexion est sécurisée. |
-| Résultat attendu             | Connexion TLS établie                        | FileZilla affiche “Connexion TLS établie.” et un cadenas 🔒 apparaît.      |
+| Résultat attendu             | Connexion TLS établie                        | FileZilla affiche “Connexion TLS établie.” et un cadenas apparaît.      |
 
 Photo qui montre: 
 ![gestionnaire_SSL](Photos_TP3_1/SSL/gestionnaire.png)
