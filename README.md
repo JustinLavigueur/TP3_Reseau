@@ -330,3 +330,34 @@ Un certificat (vsftpd.cert.pem) ainsi qu'une clé privée (vsftpd.key.pem) ont �
  ![Preuve_SSL](Photos_TP3_1/SSL/Preuve.png)
 
 ## 4. Test avec Filezilla
+
+Connexion en mode FTP sécurisé (FTPS explicite)
+
+- On ouvre FileZilla si déjà installé.
+- On va dans Fichier → Gestionnaire de sites.
+- On clique sur Nouveau site et on remplie les champs suivants :
+
+| Étape                       | Valeur / Action                              | Description                                                                 |
+|------------------------------|----------------------------------------------|-----------------------------------------------------------------------------|
+| Protocole                    | FTP – Protocole de transfert de fichiers     | Permet de se connecter au serveur FTP.                                     |
+| Chiffrement                  | Utiliser FTP explicite sur TLS si disponible | Active le mode FTPS (connexion sécurisée via SSL/TLS).                     |
+| Hôte                         | 68.233.126.255                               | Adresse IP publique du serveur FTP.                                        |
+| Port                         | 21                                           | Port standard utilisé pour le service FTP.                                 |
+| Type d’authentification      | Normal                                       | Permet d’utiliser un nom d’utilisateur et un mot de passe.                 |
+| Utilisateur                  | ftpadmin                                     | Compte local créé pour le test FTP sécurisé.                               |
+| Mot de passe                 | ftpadmin                                     | Mot de passe associé à l’utilisateur ftpadmin.                             |
+| Vérification certificat TLS  | Accepter le certificat TLS à la première connexion | Confirme que le chiffrement SSL est actif et que la connexion est sécurisée. |
+| Résultat attendu             | Connexion TLS établie                        | FileZilla affiche “Connexion TLS établie.” et un cadenas 🔒 apparaît.      |
+
+On clique sur Connexion.
+
+Si le SSL est bien activé, une fenêtre s’ouvrira pour te demander d’accepter le certificat TLS.
+
+Voici une photo qui montre bien la fenêtre:
+
+
+Accepte-le, puis la connexion s’établira de manière sécurisée.
+
+
+
+
