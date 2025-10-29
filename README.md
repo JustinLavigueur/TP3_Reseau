@@ -350,6 +350,9 @@ Connexion en mode FTP sécurisé (FTPS explicite)
 | Vérification certificat TLS  | Accepter le certificat TLS à la première connexion | Confirme que le chiffrement SSL est actif et que la connexion est sécurisée. |
 | Résultat attendu             | Connexion TLS établie                        | FileZilla affiche “Connexion TLS établie.” et un cadenas 🔒 apparaît.      |
 
+Photo qui montre: 
+![gestionnaire_SSL](Photos_TP3_1/SSL/gestionnaire.png)
+
 On clique sur Connexion.
 
 Si le SSL est bien activé, une fenêtre s’ouvrira pour te demander d’accepter le certificat TLS.
@@ -358,6 +361,7 @@ Voici une photo qui montre bien la fenêtre:
 ![Demande_asile_SSL](Photos_TP3_1/SSL/demande_asile.png)
 
 Accepte-le, puis la connexion s’établira de manière sécurisée.
+![connexion_SSL](Photos_TP3_1/SSL/connexion.png)
 
 
 
