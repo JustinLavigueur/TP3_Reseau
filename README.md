@@ -252,7 +252,7 @@ Le home des utilisateurs:
 - `sudo chmod -R 775 /home/ubuntu/vwrite     # lecture + écriture`
 - `sudo chmod -R 755 /home/ubuntu/vreader    # lecture seule`
 
-![Permissions](Photos_TP3_1/Utilisateurs_virtuels/Virtual permissions.png)
+![Permissions](Photos_TP3_1/Utilisateurs_virtuels/Virtualpermissions.png)
 
 ## 6. Création du fichier de login (nom/mot de passe). Il est déjà créé de base avec le nom de mes utilisateurs locaux 
 - `sudo nano /home/ubuntu/login.txt`
@@ -278,11 +278,14 @@ Voici une photo qui le montre:
 
 On ajoute (ou vérifie) les lignes suivantes :
 
-guest_enable=YES
-guest_username=ftp
-pam_service_name=vsftpd.virtual
-user_sub_token=$USER
-local_root=/home/ubuntu/$USER
+| Directive          | Valeur               | Description                                                                 |
+|-------------------|--------------------|----------------------------------------------------------------------------|
+| guest_enable       | YES                 | Active le mode « invité » pour les utilisateurs virtuels.                  |
+| guest_username     | ftp                 | Nom d’utilisateur système sous lequel les utilisateurs invités sont mappés.|
+| pam_service_name   | vsftpd.virtual      | Nom du service PAM utilisé pour l’authentification des utilisateurs virtuels.|
+| user_sub_token     | $USER               | Token utilisé pour remplacer dynamiquement par le nom de l’utilisateur virtuel dans d’autres directives.|
+| local_root         | /home/ubuntu/$USER  | Répertoire racine pour l’utilisateur, basé sur son nom ; chaque utilisateur virtuel aura son propre dossier.|
+
 
 (Et on doit bien garder local_enable=YES, write_enable=YES, chroot_local_user=YES, etc. pour les utilisateurs locaux.)
 
