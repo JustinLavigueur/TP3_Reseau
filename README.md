@@ -220,11 +220,11 @@ On peut simplement écrire **writer** et **reader** dans vsftpd.chroot_list puis
 ## 11. Photos qui montrent certaines étapes:
 
 Résultat attendu pour le chroot de l'utilisateur reader dans le ftp et dans la VM  :
-![reader](Photos_TP3_1/Utilisateurs_locaux/reader_ftp_pwd.png)
-![reader](Photos_TP3_1/Utilisateurs_locaux/homereader.png)
+![reader_ftp](Photos_TP3_1/Utilisateurs_locaux/reader_ftp_pwd.png)
+![homereader](Photos_TP3_1/Utilisateurs_locaux/homereader.png)
 
 Le home des utilisateurs:
-![reader](Photos_TP3_1/Utilisateurs_locaux/home_users.png)
+![home](Photos_TP3_1/Utilisateurs_locaux/home_users.png)
 
 ---
 
@@ -298,7 +298,7 @@ On ajoute (ou vérifie) les lignes suivantes :
 # === SSL ===
 
 ## 1. Création du certificat
-Il vous faut installer le paquet openssl:
+Il vous faut installer le paquet openssl :
 - `sudo openssl req -new -x509 -days 365 -nodes -out /etc/ssl/private/vsftpd.cert.pem -keyout /etc/ssl/private/vsftpd.key.pem`
 
 Openssl va vous poser quelques questions, la plus critique est celle ci :
